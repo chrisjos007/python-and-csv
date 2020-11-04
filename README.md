@@ -20,8 +20,8 @@ The Dependancies required for running the program has been provided in the requi
 
 ## code contents
 
-imported modules -> csv, numpy, matplotlib
-functions used -> india_plot, asean_plot, saarc_plot, group_plot_asean, main
+1) imported modules -> csv, numpy, matplotlib
+2) functions used -> india_plot, asean_plot, saarc_plot, group_plot_asean, main
 
 ## Running the program
 
