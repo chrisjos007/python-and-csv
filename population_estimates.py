@@ -26,7 +26,7 @@ def india_plot(csv_read):
 
 
 def asean_plot(csv_read, asean):
-    # to plot the bar graph of asean nations
+    # to plot the bar graph population of asean nations
 
     x = []
     y = []
@@ -57,6 +57,8 @@ def saarc_plot(csv_read, saarc):
                 yearwise_pop[line[2]] += float(line[3])
             else:
                 yearwise_pop[line[2]] = float(line[3])
+
+    # plotting bar graph
     plt.figure(figsize=(14, 6))
     plt.bar(yearwise_pop.keys(), yearwise_pop.values())
     plt.xlabel("Year")
