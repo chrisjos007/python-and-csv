@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')
-plt.autoscale(enable=True, axis='both', tight=None)
 
 
 def india_plot(csv_read):
@@ -21,7 +20,8 @@ def india_plot(csv_read):
     plt.bar(x, y)
     plt.xlabel("Year")
     plt.ylabel("Population")
-    plt.title("India -Year vs Population")
+    plt.title("India - Year vs Population")
+    plt.tight_layout()
     plt.show()
 
 
@@ -41,6 +41,7 @@ def asean_plot(csv_read, asean):
     plt.xlabel("Country")
     plt.ylabel("Population")
     plt.title("ASEAN - Country vs Population")
+    plt.tight_layout()
     plt.show()
 
 
@@ -60,8 +61,9 @@ def saarc_plot(csv_read, saarc):
     plt.bar(yearwise_pop.keys(), yearwise_pop.values())
     plt.xlabel("Year")
     plt.ylabel("Total Population")
-    plt.title("SAARC -Yea vs Total population")
+    plt.title("SAARC - Year vs Total population")
     plt.xticks(rotation=90)
+    plt.tight_layout()
     plt.show()
 
 
@@ -69,17 +71,11 @@ def group_plot_asean(csv_read, asean):
     # function to create group plot for ASEAN countries
 
     population = {}
-    years = [
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014"
-             ]
+    years = [str(i) for i in range(2004, 2015)]
     x = np.arange(len(years))
     bwidth = 0.1
-    fig, ax = plt.subplots()
+    fig = plt.figure(figsize=(12, 6))
+    ax = plt.subplot()
     rects = [x]
 
     # loop through the year and creates a dictionary of countrywise population
@@ -96,11 +92,16 @@ def group_plot_asean(csv_read, asean):
         rects.append(ax.bar(x+bwidth*i, population[j], width=bwidth, label=j))
 
     ax.set_xticks(x+bwidth*i/2)
-    ax.set_title("Population vs Year for each ASEAN nation")
+    ax.set_title("Year vs Population for each ASEAN nation")
     ax.set_xlabel("Year")
     ax.set_ylabel("Population")
     ax.set_xticklabels(years)
-    ax.legend()
+    ax.legend(
+        loc='lower left',
+        bbox_to_anchor=(0.0, 1.01),
+        borderaxespad=0,
+        frameon=False
+        )
     fig.tight_layout()
     plt.show()
 
@@ -109,35 +110,36 @@ if __name__ == "__main__":
 
     # list of SAARC nations
     saarc = [
-            "Afghanistan",
-            "Bangladesh",
-            "Bhutan",
-            "India",
-            "Maldives",
-            "Nepal",
-            "Pakistan",
-            "Sri Lanka"
-             ]
+        "Afghanistan",
+        "Bangladesh",
+        "Bhutan",
+        "India",
+        "Maldives",
+        "Nepal",
+        "Pakistan",
+        "Sri Lanka"
+        ]
 
     # list of ASEAN nations
     asean = [
-            "Singapore",
-            "Brunei",
-            "Malaysia",
-            "Thailand",
-            "Cambodia",
-            "Indonesia",
-            "Laos",
-            "Myanmar",
-            "Philippines",
-            "Vietnam"
-             ]
+        "Singapore",
+        "Brunei",
+        "Malaysia",
+        "Thailand",
+        "Cambodia",
+        "Indonesia",
+        "Laos",
+        "Myanmar",
+        "Philippines",
+        "Vietnam"
+        ]
 
     # opening the csv file and writing to a list
     with open('/home/chris/Downloads/popest.csv', 'r') as newfile:
         csv_read = list(csv.reader(newfile, delimiter=','))
 
         # making function calls to plot the required graphs
+        plt.figure(figsize=(10, 6))
         india_plot(csv_read)
         asean_plot(csv_read, asean)
         saarc_plot(csv_read, saarc)

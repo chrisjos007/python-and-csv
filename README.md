@@ -18,6 +18,11 @@ To convert raw open data, country and year wise population estimates in this cas
 
 The Dependancies required for running the program has been provided in the requirements.txt file
 
+## code contents
+
+imported modules -> csv, numpy, matplotlib
+functions used -> india_plot, asean_plot, saarc_plot, group_plot_asean, main
+
 ## Running the program
 
 Running the program returns 4 graphs which are solutions to the 4 problem statements
