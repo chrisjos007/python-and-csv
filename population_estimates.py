@@ -12,10 +12,10 @@ def india_plot(csv_read):
         if(line[0] == "India"):
             x.append(int(line[2]))
             y.append(float(line[3]))
-    plt.bar(x, y, label="population v/s year-India")
+    plt.bar(x, y)
     plt.xlabel('Year')
     plt.ylabel('Population')
-    plt.title("Assign_1_Q_1")
+    plt.title("India - Population vs Year")
     plt.show()
 
 
@@ -39,10 +39,10 @@ def asean_plot(csv_read):
             x.append(line[0])
             y.append(float(line[3]))
     plt.figure(figsize=(8, 4))
-    plt.bar(x, y, label="ASEAN")
+    plt.bar(x, y, width=0.4)
     plt.xlabel('Country')
-    plt.ylabel('Total Population')
-    plt.title("Assign_1_Q_3")
+    plt.ylabel('Population')
+    plt.title("ASEAN - Countries vs Population")
     plt.show()
 
 
@@ -68,7 +68,7 @@ def saarc_plot(csv_read):
     plt.bar(d.keys(), d.values(), label="SAARC")
     plt.xlabel('Year')
     plt.ylabel('Total Population')
-    plt.title("Assign_1_Q_3")
+    plt.title("SAARC - Total population vs Years")
     plt.xticks(rotation=90)
     plt.show()
 
