@@ -75,7 +75,7 @@ def group_plot_asean(csv_read, asean):
     population = {}
     years = [str(i) for i in range(2004, 2015)]
     x = np.arange(len(years))
-    bwidth = 0.1
+    bar_width = 0.1
     fig = plt.figure(figsize=(12, 6))
     ax = plt.subplot()
     rects = [x]
@@ -91,9 +91,14 @@ def group_plot_asean(csv_read, asean):
 
     # creates a bar plot for each country
     for i, j in enumerate(population.keys()):
-        rects.append(ax.bar(x+bwidth*i, population[j], width=bwidth, label=j))
+        rects.append(ax.bar(x+bar_width*i,
+                            population[j],
+                            width=bar_width,
+                            label=j
+                            ))
 
-    ax.set_xticks(x+bwidth*i/2)
+    # plotting the graph
+    ax.set_xticks(x+bar_width*i/2)
     ax.set_title("Year vs Population for each ASEAN nation")
     ax.set_xlabel("Year")
     ax.set_ylabel("Population")
