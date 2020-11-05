@@ -143,7 +143,7 @@ if __name__ == "__main__":
         ]
 
     # opening the csv file and writing to a list
-    with open('/home/chris/Downloads/popest.csv', 'r') as newfile:
+    with open('popest.csv', 'r') as newfile:
         csv_read = list(csv.reader(newfile, delimiter=','))
 
         # making function calls to plot the required graphs

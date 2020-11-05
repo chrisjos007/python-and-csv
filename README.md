@@ -22,16 +22,20 @@ The Dependancies required for running the program has been provided in the requi
 
 1) imported modules -> csv, numpy, matplotlib
 2) functions used -> india_plot, asean_plot, saarc_plot, group_plot_asean, main
+3) csv file path -> same as the project path
 
 ## Running the program
 
 Running the program returns 4 graphs which are solutions to the 4 problem statements
 
-1. Bar plot of **Population of India** vs **Year**
+1. Bar plot of **Population of India** for each **Year**
+   
 2. Bar plot of **Population of ASEAN countries**
    * Gives the population of each ASEAN country vs Year
    * Data considered for the year **2014**
+  
 3) Bar plot of **Total Population of SAARC Countries**
+   
 4) Grouped bar chart of **ASEAN Population**
    * Shows the grouped bar chart for each ASEAN countries
-   * Graph is ordered into groups by year from **2009 to 2014**
+   * Graph is ordered into groups by year from **2004 to 2014**
