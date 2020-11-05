@@ -26,7 +26,7 @@ def india_plot(csv_read):
 
 
 def asean_plot(csv_read, asean):
-    # to plot the bar graph population of asean nations
+    # function to plot the bar graph of population of asean nations
 
     x = []
     y = []
@@ -36,6 +36,7 @@ def asean_plot(csv_read, asean):
             x.append(line[0])
             y.append(float(line[3]))
 
+    # plotting the graph
     plt.figure(figsize=(8, 4))
     plt.bar(x, y, width=0.4)
     plt.xlabel("Country")
@@ -46,7 +47,7 @@ def asean_plot(csv_read, asean):
 
 
 def saarc_plot(csv_read, saarc):
-    # to plot the group plot of ASEAN nations
+    # function to plot the total population of SAARC nations
 
     yearwise_pop = {}
 
