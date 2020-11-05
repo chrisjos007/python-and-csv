@@ -153,7 +153,7 @@ if __name__ == "__main__":
         if(line[0] == "Brunei Darussalam"):
             line[0] = "Brunei"
 
-        # making function calls to plot the required graphs
+    # making function calls to plot the required graphs
     plt.figure(figsize=(10, 6))
     matplotlib.rcParams['axes.linewidth'] = 0.3
     india_plot(csv_read)
