@@ -143,7 +143,7 @@ if __name__ == "__main__":
         ]
 
     # opening the csv file and writing to a list
-    with open('popest.csv', 'r') as newfile:
+    with open('population-estimates_csv.csv', 'r') as newfile:
         csv_read = list(csv.reader(newfile, delimiter=','))
 
     # rename 2 nations to their shorter names
