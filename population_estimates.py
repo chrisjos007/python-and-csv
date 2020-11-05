@@ -16,11 +16,11 @@ def india_plot(csv_read):
             x.append(int(line[2]))
             y.append(float(line[3]))
 
-    # plotting graph
+    # plotting the graph
     plt.bar(x, y)
     plt.xlabel("Year")
     plt.ylabel("Population")
-    plt.title("India - Year vs Population")
+    plt.title("Year vs Population for India")
     plt.tight_layout()
     plt.show()
 
@@ -37,11 +37,11 @@ def asean_plot(csv_read, asean):
             y.append(float(line[3]))
 
     # plotting the graph
-    plt.figure(figsize=(8, 4))
+    plt.figure(figsize=(12, 8))
     plt.bar(x, y, width=0.4)
     plt.xlabel("Country")
     plt.ylabel("Population")
-    plt.title("ASEAN - Country vs Population")
+    plt.title("Country vs Population for ASEAN nations for 2014")
     plt.tight_layout()
     plt.show()
 
@@ -64,7 +64,7 @@ def saarc_plot(csv_read, saarc):
     plt.bar(yearwise_pop.keys(), yearwise_pop.values())
     plt.xlabel("Year")
     plt.ylabel("Total Population")
-    plt.title("SAARC - Year vs Total population")
+    plt.title("Year vs Total population for SAARC nations")
     plt.xticks(rotation=90)
     plt.tight_layout()
     plt.show()
@@ -76,7 +76,7 @@ def group_plot_asean(csv_read, asean):
     population = {}
     years = [str(i) for i in range(2004, 2015)]
     x = np.arange(len(years))
-    bar_width = 0.1
+    bar_width = 0.08
     fig = plt.figure(figsize=(12, 6))
     ax = plt.subplot()
     rects = [x]
@@ -100,7 +100,7 @@ def group_plot_asean(csv_read, asean):
 
     # plotting the graph
     ax.set_xticks(x+bar_width*i/2)
-    ax.set_title("Year vs Population for each ASEAN nation")
+    ax.set_title("Year vs Population for each ASEAN nation from 2004 to 2014")
     ax.set_xlabel("Year")
     ax.set_ylabel("Population")
     ax.set_xticklabels(years)
@@ -139,16 +139,24 @@ if __name__ == "__main__":
         "Laos",
         "Myanmar",
         "Philippines",
-        "Vietnam"
+        "Viet Nam"
         ]
 
     # opening the csv file and writing to a list
     with open('popest.csv', 'r') as newfile:
         csv_read = list(csv.reader(newfile, delimiter=','))
 
+    # rename 2 nations to their shorter names
+    for line in csv_read:
+        if(line[0] == "Lao People's Democratic Republic"):
+            line[0] = "Laos"
+        if(line[0] == "Brunei Darussalam"):
+            line[0] = "Brunei"
+
         # making function calls to plot the required graphs
-        plt.figure(figsize=(10, 6))
-        india_plot(csv_read)
-        asean_plot(csv_read, asean)
-        saarc_plot(csv_read, saarc)
-        group_plot_asean(csv_read, asean)
+    plt.figure(figsize=(10, 6))
+    matplotlib.rcParams['axes.linewidth'] = 0.3
+    india_plot(csv_read)
+    asean_plot(csv_read, asean)
+    saarc_plot(csv_read, saarc)
+    group_plot_asean(csv_read, asean)
