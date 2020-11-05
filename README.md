@@ -16,7 +16,7 @@ To convert raw open data, country and year wise population estimates in this cas
 
 ## Dependancies
 
-The Dependancies required for running the program has been provided in the requirements.txt file
+The Dependancies required for running the program has been provided in the **requirements.txt** file
 
 ## code contents
 
@@ -28,7 +28,7 @@ The Dependancies required for running the program has been provided in the requi
 
 Running the program returns 4 graphs which are solutions to the 4 problem statements
 
-1. Bar plot of **Population of India** for each **Year**
+1. Bar plot of **Population of India for each Year**
    
 2. Bar plot of **Population of ASEAN countries**
    * Gives the population of each ASEAN country vs Year
