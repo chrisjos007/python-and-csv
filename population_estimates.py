@@ -115,6 +115,11 @@ def group_plot_asean(csv_read, asean):
 
 
 if __name__ == "__main__":
+    """Read in the csv file and create a list from it.
+
+    Using the list, make function calls
+
+    Function calls represent the solution plots"""
 
     # list of SAARC nations
     saarc = [
