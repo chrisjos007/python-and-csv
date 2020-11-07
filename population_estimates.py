@@ -2,79 +2,87 @@ import csv
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from collections import defaultdict
 matplotlib.use('TkAgg')
 
 
-def india_plot(csv_read):
-    # function to plot the year vs poplation for India
-
-    x = []
-    y = []
-
-    for line in csv_read:
-        if(line[0] == "India"):
-            x.append(int(line[2]))
-            y.append(float(line[3]))
-
-    # plotting the graph
+def graph_plotter(x, y, x_label, y_label, title, rot=0):
     plt.bar(x, y)
-    plt.xlabel("Year")
-    plt.ylabel("Population")
-    plt.title("Year vs Population for India")
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(title)
+    if rot != 0:
+        plt.xticks(rotation=rot)
     plt.tight_layout()
     plt.show()
 
 
-def asean_plot(csv_read, asean):
-    # function to plot the bar graph of population of asean nations
+def india_plot(csv_read):
+    """ returns the plot of the indian population for each year """
 
     x = []
     y = []
 
+    # creating x and y coordinates
     for line in csv_read:
-        if((line[0] in asean) and (line[2] == "2014")):
+        if line[0] == "India":
+            x.append(int(line[2]))
+            y.append(float(line[3]))
+
+    # plotting the graph
+    plt.figure(figsize=(10, 6))
+    graph_plotter(
+                 x, y, "Year", "Population",
+                 "Year vs Population for India"
+                 )
+
+
+def asean_plot(csv_read, asean):
+    """Returns a plot of the population of asean nations for 2014"""
+
+    x = []
+    y = []
+
+    # creating x and y coordinates
+    for line in csv_read:
+        if (line[0] in asean) and (line[2] == "2014"):
             x.append(line[0])
             y.append(float(line[3]))
 
     # plotting the graph
     plt.figure(figsize=(12, 8))
-    plt.bar(x, y, width=0.4)
-    plt.xlabel("Country")
-    plt.ylabel("Population")
-    plt.title("Country vs Population for ASEAN nations for 2014")
-    plt.tight_layout()
-    plt.show()
+    graph_plotter(
+                  x, y, "Country", "Population",
+                  "Country vs Population for ASEAN nations for 2014"
+                  )
 
 
 def saarc_plot(csv_read, saarc):
-    # function to plot the total population of SAARC nations
+    """ Returns a plot the total population of SAARC nations """
 
-    yearwise_pop = {}
+    yearwise_pop = defaultdict(float)
 
     # creates a dictionary of total population for each year
     for line in csv_read:
-        if(line[0] in saarc):
-            if(line[2] in yearwise_pop):
-                yearwise_pop[line[2]] += float(line[3])
-            else:
-                yearwise_pop[line[2]] = float(line[3])
+        if line[0] in saarc:
+            yearwise_pop[line[2]] += float(line[3])
 
     # plotting bar graph
     plt.figure(figsize=(14, 6))
-    plt.bar(yearwise_pop.keys(), yearwise_pop.values())
-    plt.xlabel("Year")
-    plt.ylabel("Total Population")
-    plt.title("Year vs Total population for SAARC nations")
-    plt.xticks(rotation=90)
-    plt.tight_layout()
-    plt.show()
+    graph_plotter(
+                 yearwise_pop.keys(), yearwise_pop.values(),
+                 "Year", "Total Population",
+                 "Year vs Total population for SAARC nations", 90
+                 )
 
 
 def group_plot_asean(csv_read, asean):
-    # function to create group plot for ASEAN countries
+    """ Returns a group plot for ASEAN countries
 
-    population = {}
-    years = [str(i) for i in range(2004, 2015)]
+    Grouped into countries over the years 2004 to 2014"""
+
+    population = defaultdict(list)
+    years = [str(i) for i in range(2004, 2015)]    # list of years
     x = np.arange(len(years))
     bar_width = 0.08
     fig = plt.figure(figsize=(12, 6))
@@ -82,13 +90,10 @@ def group_plot_asean(csv_read, asean):
     rects = [x]
 
     # loop through the year and creates a dictionary of countrywise population
-    for i, year in enumerate(years):
+    for year in years:
         for line in csv_read:
-            if(line[2] == year and line[0] in asean):
-                if(line[0] in population):
-                    population[line[0]].append(float(line[3]))
-                else:
-                    population[line[0]] = [float(line[3])]
+            if (line[2] == year) and (line[0] in asean):
+                population[line[0]].append(float(line[3]))
 
     # creates a bar plot for each country
     for i, j in enumerate(population.keys()):
@@ -159,7 +164,6 @@ if __name__ == "__main__":
             line[0] = "Brunei"
 
     # making function calls to plot the required graphs
-    plt.figure(figsize=(10, 6))
     matplotlib.rcParams['axes.linewidth'] = 0.3
     india_plot(csv_read)
     asean_plot(csv_read, asean)
